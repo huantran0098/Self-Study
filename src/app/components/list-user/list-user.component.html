@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="col-md-12">
+    <form [formGroup]="userForm" (ngSubmit)="createUser()" >
+      <table>
+        <tr>
+          <th colspan="3"><h1 id="tittle">create user</h1></th>
+        </tr>
+        <tr>
+          <td>
+            <label for="username">Username: </label>
+          </td>
+          <td>
+            <input type="text" id="username" formControlName="username">
+          </td>
+          <td>
+            <div *ngIf="userForm.get('username')?.hasError('required')  && userForm.get('username')?.touched">
+              Username error
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="password">Password:</label>
+          </td>
+          <td>
+            <input type="password" id="password" formControlName="password">
+          </td>
+          <td>
+            <div *ngIf="userForm.get('password')?.hasError('required')  && userForm.get('password')?.touched">
+              Password error
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="email">Email:</label>
+          </td>
+          <td>
+            <input type="email" id="email" formControlName="email">
+          </td>
+          <td>
+            <div *ngIf="userForm.get('email')?.hasError('required')  && userForm.get('email')?.touched">
+              Email error
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" id="center">
+            <button type="submit" class="btn btn-primary" id="submit">Sub</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+<div class="container-fluid">
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Password</th>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.id}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.password}}</td>
+      <td>{{user.email}}</td>
+      <td (click)="getAUser(user.id)"><button class="btn btn-primary">Detail</button></td>
+      <td (click)="editUser(user.id)"><button class="btn btn-primary">Edit</button></td>
+      <td (click)="deleteUser(user.id)"><button class="btn btn-primary">Delete</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
